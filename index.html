@@ -1,74 +1,140 @@
-<!DOCTYPE html><html lang="hu"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Icengo Kalkulátor</title>
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
-</head><body>
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Icengo Kalkulátor</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
 <div class="container">
-<h1>🍦 Icengo Kalkulátor</h1>
 
-<div class="card">
-<h2>Tegnap esti összsúly (g)</h2>
-<input id="yesterdayTotal" type="number" placeholder="Pl. 28470">
-</div>
+    <h1>🍦 Icengo Kalkulátor</h1>
 
-<div class="card">
+    <div class="card">
+        <h2>Tegnap esti összsúly (g)</h2>
 
-    <h2>Korrekció</h2>
+        <input
+            id="yesterdayTotal"
+            type="number"
+            placeholder="Pl. 28470">
+    </div>
 
-    <div class="toggleButtons">
+    <div class="card">
 
-        <div id="receivedBtn" class="toggle active">
-    📥 Minuszom van, pótolni kell.
-</div>
+        <h2>Korrekció</h2>
 
-<div id="takenBtn" class="toggle">
-    📤 Pluszom maradt.
-</div>
+        <div class="toggleButtons">
+
+            <div id="receivedBtn" class="toggle active">
+                📥 Minuszom van, pótolni kell.
+            </div>
+
+            <div id="takenBtn" class="toggle">
+                📤 Pluszom maradt.
+            </div>
+
+        </div>
+
+        <input
+            id="extra"
+            type="number"
+            value="0"
+            placeholder="Gramm">
 
     </div>
 
-    <input
-        id="extra"
-        type="number"
-        value="0"
-        placeholder="Gramm">
+    <div class="card">
 
-</div>
-<div class="card">
+        <h2>Felbontott 2,4 kg-os zsákok</h2>
 
-    <h2>Felbontott 2,4 kg-os zsákok</h2>
+        <input
+            id="bags"
+            type="number"
+            value="0"
+            min="0"
+            placeholder="Darab">
 
-    <input
-        id="bags"
-        type="number"
-        value="0"
-        min="0"
-        placeholder="Darab">
+    </div>
 
-</div>
-<div class="card">
-<h2>Mai eladások</h2>
-<label>L (60 g)<input id="l" type="number" value="0"></label>
-<label>XL (80 g)<input id="xl" type="number" value="0"></label>
-<label>XXL (100 g)<input id="xxl" type="number" value="0"></label>
-<label>Családi (240 g)<input id="cs" type="number" value="0"></label>
-</div>
+    <div class="card">
 
-<div class="card">
-<h2>Jelenlegi mérések (g)</h2>
-<div id="flavors"></div>
-</div>
+        <h2>Mai eladások</h2>
 
-<button id="calc">SZÁMÍTÁS KEZDÉSE</button>
+        <label>
+            L (60 g)
+            <input id="l" type="number" value="0">
+        </label>
 
-<div class="card hidden" id="result">
-<h2>Eredmény</h2>
-<p>Elvárt fogyás <b id="expected"></b></p>
-<p>Valós fogyás <b id="actual"></b></p>
-<p>Eltérés <b id="diff"></b></p>
-<p>Átlag <b id="avg"></b></p>
+        <label>
+            XL (80 g)
+            <input id="xl" type="number" value="0">
+        </label>
+
+        <label>
+            XXL (100 g)
+            <input id="xxl" type="number" value="0">
+        </label>
+
+        <label>
+            Családi (240 g)
+            <input id="cs" type="number" value="0">
+        </label>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Jelenlegi mérések (g)</h2>
+
+        <div id="flavors"></div>
+
+    </div>
+
+    <button id="calc">
+        SZÁMÍTÁS KEZDÉSE
+    </button>
+
+    <div class="card hidden" id="result">
+
+        <h2>Eredmény</h2>
+
+        <p>
+            Elvárt fogyás
+            <b id="expected"></b>
+        </p>
+
+        <p>
+            Valós fogyás
+            <b id="actual"></b>
+        </p>
+
+        <p>
+            Eltérés
+            <b id="diff"></b>
+        </p>
+
+        <p>
+            Átlag
+            <b id="avg"></b>
+        </p>
+
+        <!-- EZ ÚJ -->
+
+        <hr>
+
+        <p id="remainingL" class="remaining"></p>
+
+    </div>
+
 </div>
 
 <script src="script.js"></script>
-</body></html>
+
+</body>
+</html>
