@@ -24,12 +24,41 @@ function val(id) {
     return Number(document.getElementById(id).value) || 0;
 }
 
-// Egérgörgő tiltása
+// Görgő tiltása
 document.querySelectorAll("input").forEach(input => {
     input.addEventListener("wheel", function (e) {
         e.preventDefault();
     }, { passive: false });
 });
+
+// ----------------------
+// Korrekció gombok
+// ----------------------
+
+let correctionMode = "received";
+
+const receivedBtn = document.getElementById("receivedBtn");
+const takenBtn = document.getElementById("takenBtn");
+
+receivedBtn.onclick = () => {
+
+    correctionMode = "received";
+
+    receivedBtn.classList.add("active");
+    takenBtn.classList.remove("active");
+
+};
+
+takenBtn.onclick = () => {
+
+    correctionMode = "taken";
+
+    takenBtn.classList.add("active");
+    receivedBtn.classList.remove("active");
+
+};
+
+// ----------------------
 
 const expectedEl = document.getElementById("expected");
 const actualEl = document.getElementById("actual");
@@ -38,29 +67,22 @@ const result = document.getElementById("result");
 
 document.getElementById("calc").onclick = () => {
 
-    // Tegnap esti összsúly
     const yesterday = val("yesterdayTotal");
 
-    // Aktuális összsúly
     let current = 0;
 
     for (let i = 0; i < 8; i++) {
         current += val("m" + i);
     }
 
-    // Korrekció
     let extra = val("extra");
 
-    const mode = document.querySelector(
-        'input[name="extraType"]:checked'
-    ).value;
-
-    // Ha elvittek, akkor negatív
-    if (mode === "taken") {
+    // Ha elvittek, akkor negatív korrekció
+    if (correctionMode === "taken") {
         extra = -extra;
     }
 
-    // Valós jelenlegi összsúly
+    // Korrigált jelenlegi összsúly
     const correctedCurrent = current - extra;
 
     // Elvárt fogyás
@@ -86,11 +108,13 @@ document.getElementById("calc").onclick = () => {
     // Átlag
     const avg = cups ? diff / cups : 0;
 
-    // Színezéshez abszolút érték
+    // Színezéshez
     const avgAbs = Math.abs(avg);
 
     expectedEl.textContent = expected.toFixed(0) + " g";
+
     actualEl.textContent = actual.toFixed(0) + " g";
+
     diffEl.textContent =
         (diff > 0 ? "+" : "") +
         diff.toFixed(0) +
