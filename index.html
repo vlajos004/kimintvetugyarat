@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="hu"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Icengő Kalkulátor</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="container">
+<h1>🍦 Icengő Kalkulátor</h1>
+
+<div class="card">
+<h2>Tegnap esti összsúly (g)</h2>
+<input id="yesterdayTotal" type="number" placeholder="Pl. 28470">
+</div>
+
+<div class="card">
+<h2>Kapott / Elvitt (g)</h2>
+<input id="extra" type="number" value="0">
+<small>Pozitív = kaptál, negatív = elvittek.</small>
+</div>
+
+<div class="card">
+<h2>Mai eladások</h2>
+<label>L (60 g)<input id="l" type="number" value="0"></label>
+<label>XL (80 g)<input id="xl" type="number" value="0"></label>
+<label>XXL (100 g)<input id="xxl" type="number" value="0"></label>
+<label>Családi (240 g)<input id="cs" type="number" value="0"></label>
+</div>
+
+<div class="card">
+<h2>Jelenlegi mérések (g)</h2>
+<div id="flavors"></div>
+</div>
+
+<button id="calc">SZÁMÍTÁS KEZDÉSE</button>
+
+<div class="card hidden" id="result">
+<h2>Eredmény</h2>
+<p>Elvárt fogyás <b id="expected"></b></p>
+<p>Valós fogyás <b id="actual"></b></p>
+<p>Eltérés <b id="diff"></b></p>
+<p>Átlag <b id="avg"></b></p>
+</div>
+
+<script src="script.js"></script>
+</body></html>
