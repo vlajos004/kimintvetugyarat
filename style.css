@@ -10,3 +10,30 @@ button{width:100%;height:60px;border:none;border-radius:14px;background:#2196f3;
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 input[type=number]{-moz-appearance:textfield}
 small{color:#bbb}
+
+.toggleButtons{
+    display:flex;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.toggle{
+    flex:1;
+    height:55px;
+    border:none;
+    border-radius:14px;
+    background:#2d2d2d;
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.toggle:hover{
+    background:#3b3b3b;
+}
+
+.toggle.active{
+    background:#2196f3;
+    color:white;
+}
