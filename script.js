@@ -129,22 +129,18 @@ document.getElementById("calc").onclick = () => {
 
     avgEl.className = "";
 
-    if (avgAbs < 1.5) {
-        avgEl.classList.add("pink");
-    }
-    else if (avgAbs < 2.2) {
-        avgEl.classList.add("blue");
-    }
-    else if (avgAbs < 2.8) {
-        avgEl.classList.add("green");
-    }
-    else if (avgAbs < 3.2) {
-        avgEl.classList.add("yellow");
-    }
-    else {
-        avgEl.classList.add("red");
-    }
-
+if (avg < 2.2) {
+    avgEl.classList.add("blue");
+}
+else if (avg < 2.8) {
+    avgEl.classList.add("green");
+}
+else if (avg < 3.2) {
+    avgEl.classList.add("yellow");
+}
+else {
+    avgEl.classList.add("red");
+}
     result.classList.remove("hidden");
 
     avgEl.scrollIntoView({
