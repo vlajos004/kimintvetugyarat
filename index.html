@@ -16,15 +16,22 @@
 
     <h2>Korrekció</h2>
 
-    <label>
-        <input type="radio" name="extraType" value="received" checked>
-        Kaptam jégkrémet
-    </label>
+    <div class="toggleButtons">
 
-    <label>
-        <input type="radio" name="extraType" value="taken">
-        Elvittek jégkrémet
-    </label>
+        <button
+            type="button"
+            id="receivedBtn"
+            class="toggle active">
+            📥 Pluszom maradt.
+        </button>
+
+        <button
+            type="button"
+            id="takenBtn"
+            class="toggle">
+            📤 Minuszom van, pótolni kell.      </button>
+
+    </div>
 
     <input
         id="extra"
