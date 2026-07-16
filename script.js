@@ -6,7 +6,7 @@ document.querySelectorAll("input").forEach(i=>i.addEventListener("wheel",e=>e.pr
 document.getElementById("calc").onclick=()=>{
  let current=0;
  for(let i=0;i<8;i++) current+=val("m"+i);
- const yesterday=val("yesterdayTotal")+val("extra");
+ const yesterday=val("yesterdayTotal")-val("extra");
  const expected=val("l")*60+val("xl")*80+val("xxl")*100+val("cs")*240;
  const actual=yesterday-current;
  const diff=actual-expected;
