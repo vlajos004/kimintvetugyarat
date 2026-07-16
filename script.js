@@ -1,31 +1,130 @@
-const names=["Sárkánygyümölcs","Citrom","Csoki","Dinnye","Banán","Oreo","Rágógumi","Vattacukor"];
-const c=document.getElementById("flavors");
-names.forEach((n,i)=>c.innerHTML+=`<label>${n}<input type="number" id="m${i}"></label>`);
-const val=id=>Number(document.getElementById(id).value)||0;
-document.querySelectorAll("input").forEach(i=>i.addEventListener("wheel",e=>e.preventDefault(),{passive:false}));
-document.getElementById("calc").onclick=()=>{
- let current=0;
- for(let i=0;i<8;i++) current+=val("m"+i);
- const yesterday=val("yesterdayTotal")+val("extra");
- const expected=val("l")*60+val("xl")*80+val("xxl")*100+val("cs")*240;
- const actual=yesterday-current;
- const diff=actual-expected;
- const cups=val("l")+val("xl")+val("xxl")+val("cs");
- const avg = cups ? diff / cups : 0;
- expectedEl.textContent=expected+" g";
- actualEl.textContent=actual+" g";
- diffEl.textContent=(diff>0?"+":"")+diff+" g";
- const a=document.getElementById("avg");
-a.textContent = (avg > 0 ? "+" : "") + avg.toFixed(2) + " g/pohár";
- a.className="";
- if(avg<1.5)a.classList.add("pink");
- else if(avg<2.2)a.classList.add("blue");
- else if(avg<2.8)a.classList.add("green");
- else if(avg<3.2)a.classList.add("yellow");
- else a.classList.add("red");
- result.classList.remove("hidden");
+const names = [
+    "Sárkánygyümölcs",
+    "Citrom",
+    "Csoki",
+    "Dinnye",
+    "Banán",
+    "Oreo",
+    "Rágógumi",
+    "Vattacukor"
+];
+
+const flavors = document.getElementById("flavors");
+
+names.forEach((name, i) => {
+    flavors.innerHTML += `
+        <label>
+            ${name}
+            <input type="number" id="m${i}">
+        </label>
+    `;
+});
+
+function val(id) {
+    return Number(document.getElementById(id).value) || 0;
+}
+
+// Egérgörgő tiltása
+document.querySelectorAll("input").forEach(input => {
+    input.addEventListener("wheel", function (e) {
+        e.preventDefault();
+    }, { passive: false });
+});
+
+const expectedEl = document.getElementById("expected");
+const actualEl = document.getElementById("actual");
+const diffEl = document.getElementById("diff");
+const result = document.getElementById("result");
+
+document.getElementById("calc").onclick = () => {
+
+    // Tegnap esti összsúly
+    const yesterday = val("yesterdayTotal");
+
+    // Aktuális összsúly
+    let current = 0;
+
+    for (let i = 0; i < 8; i++) {
+        current += val("m" + i);
+    }
+
+    // Korrekció
+    let extra = val("extra");
+
+    const mode = document.querySelector(
+        'input[name="extraType"]:checked'
+    ).value;
+
+    // Ha elvittek, akkor negatív
+    if (mode === "taken") {
+        extra = -extra;
+    }
+
+    // Valós jelenlegi összsúly
+    const correctedCurrent = current - extra;
+
+    // Elvárt fogyás
+    const expected =
+        val("l") * 60 +
+        val("xl") * 80 +
+        val("xxl") * 100 +
+        val("cs") * 240;
+
+    // Valós fogyás
+    const actual = yesterday - correctedCurrent;
+
+    // Eltérés
+    const diff = actual - expected;
+
+    // Poharak száma
+    const cups =
+        val("l") +
+        val("xl") +
+        val("xxl") +
+        val("cs");
+
+    // Átlag
+    const avg = cups ? diff / cups : 0;
+
+    // Színezéshez abszolút érték
+    const avgAbs = Math.abs(avg);
+
+    expectedEl.textContent = expected.toFixed(0) + " g";
+    actualEl.textContent = actual.toFixed(0) + " g";
+    diffEl.textContent =
+        (diff > 0 ? "+" : "") +
+        diff.toFixed(0) +
+        " g";
+
+    const avgEl = document.getElementById("avg");
+
+    avgEl.textContent =
+        (avg > 0 ? "+" : "") +
+        avg.toFixed(2) +
+        " g/pohár";
+
+    avgEl.className = "";
+
+    if (avgAbs < 1.5) {
+        avgEl.classList.add("pink");
+    }
+    else if (avgAbs < 2.2) {
+        avgEl.classList.add("blue");
+    }
+    else if (avgAbs < 2.8) {
+        avgEl.classList.add("green");
+    }
+    else if (avgAbs < 3.2) {
+        avgEl.classList.add("yellow");
+    }
+    else {
+        avgEl.classList.add("red");
+    }
+
+    result.classList.remove("hidden");
+
+    avgEl.scrollIntoView({
+        behavior: "smooth"
+    });
+
 };
-const expectedEl=document.getElementById("expected");
-const actualEl=document.getElementById("actual");
-const diffEl=document.getElementById("diff");
-const result=document.getElementById("result");
