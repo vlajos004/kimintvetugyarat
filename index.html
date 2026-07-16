@@ -13,9 +13,25 @@
 </div>
 
 <div class="card">
-<h2>Tegnapi maradék</h2>
-<input id="extra" type="number" value="0">
-<small>Pozitív szám ha pluszod megmaradt, negatív szám ha pótolni kell!</small>
+
+    <h2>Korrekció</h2>
+
+    <label>
+        <input type="radio" name="extraType" value="received" checked>
+        Kaptam jégkrémet
+    </label>
+
+    <label>
+        <input type="radio" name="extraType" value="taken">
+        Elvittek jégkrémet
+    </label>
+
+    <input
+        id="extra"
+        type="number"
+        value="0"
+        placeholder="Gramm">
+
 </div>
 
 <div class="card">
