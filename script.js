@@ -85,7 +85,7 @@ document.getElementById("calc").onclick = () => {
         extra = -extra;
     }
 
-    // Korrigált jelenlegi összsúly
+    // Korrigált jelenlegi összsúly 
     const correctedCurrent = current - extra + bagGrams;
 
     // Elvárt fogyás
