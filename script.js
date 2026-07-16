@@ -9,6 +9,7 @@ const names = [
     "Vattacukor"
 ];
 
+
 const flavors = document.getElementById("flavors");
 
 names.forEach((name, i) => {
