@@ -96,7 +96,8 @@ document.getElementById("calc").onclick = () => {
         val("cs") * 240;
 
     // Valós fogyás
-    const actual = yesterday - correctedCurrent;
+    // Valós fogyás
+    const actual = (yesterday - (current - extra)) + bagGrams;
 
     // Eltérés
     const diff = actual - expected;
