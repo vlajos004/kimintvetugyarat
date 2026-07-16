@@ -135,6 +135,7 @@ button:not(.toggle):active{
     text-align:center;
 
     width:auto;
+    user-select: none;
 
 }
 
