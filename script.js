@@ -11,12 +11,12 @@ document.getElementById("calc").onclick=()=>{
  const actual=yesterday-current;
  const diff=actual-expected;
  const cups=val("l")+val("xl")+val("xxl")+val("cs");
- const avg=cups?Math.abs(diff)/cups:0;
+ const avg = cups ? diff / cups : 0;
  expectedEl.textContent=expected+" g";
  actualEl.textContent=actual+" g";
  diffEl.textContent=(diff>0?"+":"")+diff+" g";
  const a=document.getElementById("avg");
- a.textContent=avg.toFixed(2)+" g/pohár";
+a.textContent = (avg > 0 ? "+" : "") + avg.toFixed(2) + " g/pohár";
  a.className="";
  if(avg<1.5)a.classList.add("pink");
  else if(avg<2.2)a.classList.add("blue");
