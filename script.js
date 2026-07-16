@@ -77,13 +77,16 @@ document.getElementById("calc").onclick = () => {
 
     let extra = val("extra");
 
+    const bags = val("bags");
+    const bagGrams = bags * 2400;
+
     // Ha elvittek, akkor negatív korrekció
     if (correctionMode === "taken") {
         extra = -extra;
     }
 
     // Korrigált jelenlegi összsúly
-    const correctedCurrent = current - extra;
+    const correctedCurrent = current - extra + bagGrams;
 
     // Elvárt fogyás
     const expected =
