@@ -64,6 +64,7 @@ const expectedEl = document.getElementById("expected");
 const actualEl = document.getElementById("actual");
 const diffEl = document.getElementById("diff");
 const result = document.getElementById("result");
+const remainingEl = document.getElementById("remainingL");
 
 document.getElementById("calc").onclick = () => {
 
@@ -144,6 +145,33 @@ else if (avg < 3.2) {
 }
 else {
     avgEl.classList.add("red");
+}
+    // ===== 2,5 g/pohár célátlag mutató =====
+
+const idealConsumption = expected + (cups * 2.5);
+
+// gramm különbség az ideális fogyáshoz képest
+const differenceToTarget = idealConsumption - actual;
+
+// ez hány darab 60 g-os L-es pohárnak felel meg
+const lDifference = differenceToTarget / 60;
+
+if (Math.abs(lDifference) < 0.5) {
+
+    remainingEl.textContent = "Minden tökéletes.";
+
+}
+else if (lDifference > 0) {
+
+    remainingEl.textContent =
+        `Még ${lDifference.toFixed(1)} darab L-es poharat eladhatnál a célátlagig.`;
+
+}
+else {
+
+    remainingEl.textContent =
+        `${Math.abs(lDifference).toFixed(1)} darab L-es pohárral túllőttél a célon.`;
+
 }
     result.classList.remove("hidden");
 
