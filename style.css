@@ -259,3 +259,24 @@ small{
     }
 
 }
+
+
+.remaining{
+
+    margin-top:18px !important;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#2b2b2b;
+
+    text-align:center;
+
+    font-size:19px;
+
+    font-weight:700;
+
+    line-height:1.4;
+
+}
