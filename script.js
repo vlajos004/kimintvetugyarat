@@ -32,32 +32,8 @@ document.querySelectorAll("input").forEach(input => {
     }, { passive: false });
 });
 
-// ----------------------
-// Korrekció gombok
-// ----------------------
 
-let correctionMode = "received";
 
-const receivedBtn = document.getElementById("receivedBtn");
-const takenBtn = document.getElementById("takenBtn");
-
-receivedBtn.onclick = () => {
-
-    correctionMode = "received";
-
-    receivedBtn.classList.add("active");
-    takenBtn.classList.remove("active");
-
-};
-
-takenBtn.onclick = () => {
-
-    correctionMode = "taken";
-
-    takenBtn.classList.add("active");
-    receivedBtn.classList.remove("active");
-
-};
 
 // ----------------------
 
@@ -77,18 +53,13 @@ document.getElementById("calc").onclick = () => {
         current += val("m" + i);
     }
 
-    let extra = val("extra");
+
 
     const bags = val("bags");
     const bagGrams = bags * 2400;
 
-    // Ha elvittek, akkor negatív korrekció
-    if (correctionMode === "taken") {
-        extra = -extra;
-    }
+ 
 
-    // Korrigált jelenlegi összsúly 
-    const correctedCurrent = current - extra + bagGrams;
 
     // Elvárt fogyás
     const expected =
@@ -99,8 +70,7 @@ document.getElementById("calc").onclick = () => {
 
     // Valós fogyás
     // Valós fogyás
-    const actual = (yesterday - (current - extra)) + bagGrams;
-
+    const actual = (yesterday - current) + bagGrams;
     // Eltérés
     const diff = actual - expected;
 
@@ -115,7 +85,7 @@ document.getElementById("calc").onclick = () => {
     const avg = cups ? diff / cups : 0;
 
     // Színezéshez
-    const avgAbs = Math.abs(avg);
+  
 
     expectedEl.textContent = expected.toFixed(0) + " g";
 
